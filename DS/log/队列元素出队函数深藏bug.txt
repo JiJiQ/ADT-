@@ -1,0 +1,24 @@
+Elemtype& DeQueue(Queue& p,Elemtype& e)
+{
+	if(p.rear != p.front)
+	{
+		e = p.elem[p.front];
+		p.front = (p.front+1)%p.queuesize;
+		return e;
+	}else{
+		printf("Queue empty\n");
+		e = -1;
+		return e;
+	}
+}
+for(i = 0;i <= 10;i++)
+{
+	PushS(no1,i);
+	EnQueue(No1,i);
+}
+printf("队列No1中结点开始出对");
+for(i = 0;i < 10;i++)
+{
+	printf("%3d\n",DeQueue(No1,E));
+}
+bug发现:为程序健壮性考虑，当队列为空时仍要给e一个带有标识性意义的返回值；

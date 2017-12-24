@@ -1,0 +1,44 @@
+1\开发初期步骤完整执行好：
+（程序框图:对程序执行过程初步设置好。）（设计好程序结构后，充分思考实现每一个结构，深思熟虑之后，设置程序的数据结构（非常重要））
+2\设置数据结构心得：
+（1）线性表、栈、队列、、、等ADT的实现最好与《数据结构·严薇敏》保持一致、以少走弯路。
+（2）严格按照数据结构的设定处理数据。否则会因为不一致而导致程序崩溃。
+（3）进行模块化测试。对每一个子函数进行测试、、、、、、
+（4）每个子函数确认无误之后进行组合。设计最终程序。
+3\数据操作心得：
+（1）筛选将要移除线性表的结点时，让此节点向后移动。方便移出线性表。
+bool InProcess(JcbSet& j,OutJcb& OJ)
+{
+	system("pause");
+	int corsor = 0;
+	JCB swap;
+	if(OJ.OutNum > 0){
+		//阻塞队列中筛选剩余执行时间最少的作业；
+		for(corsor;corsor < OJ.OutNum - 1;corsor++)
+		{
+			if(OJ.elem[corsor].processTime <= OJ.elem[corsor+1].processTime){
+				swap = OJ.elem[corsor];
+				OJ.elem[corsor] = OJ.elem[corsor+1];
+				OJ.elem[corsor+1] = swap;
+			}
+		}
+		//筛选结束后，OJ.OutNum-1;
+		//心得：筛选将要移除线性表的结点时，让此节点向后移动。方便移出线性表。num--即可。				
+		if(j.front <= j.num){
+			if(j.num == 0){
+				j.elem[j.rear] = OJ.elem[OJ.OutNum-1];
+			}
+				j.elem[j.front-1] = OJ.elem[OJ.OutNum-1];			
+		if(j.front <= j.num){
+				j.front++;
+				j.num++;
+		//心得：筛选将要移除线性表的结点时，让此节点向后移动。方便移出线性表。OJ.OutNum-1;--即可。	
+				OJ.OutNum--;
+				return true;
+		}else{
+			return false;
+		}
+	}else{
+		return false;
+	}
+}

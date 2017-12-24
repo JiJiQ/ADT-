@@ -1,0 +1,44 @@
+
+void ListInsert(pList p,int i,ElemType e)
+{
+	int l = 0;
+	if(i<1||i>p->length+1){}//防止i太小和太大(i应该小于当前长度加1)。
+	else{
+		for(l = p->length;l > i - 1;l--)/*需要挪length-i+1个数据元素
+		（即length-（i-1），length和i-1均为下标）*/
+		{
+			p->elem[l] = p->elem[l-1];
+		}
+		//i为位置，
+		p->elem[i-1] = e;//插入e到第i个位置
+		p->length++;
+	}
+}
+
+void MergeList(pList A,pList B,pList C)
+{
+	int i=1,j=1;
+	int min = 0;
+	ElemType d,e;
+	while(i<=GetLength(A)&&j<=GetLength(B))//(-?-;)经验教训：判断条件应该为<=,而不是！=
+	{
+		if( *GetElem(A,i,&d) <= *GetElem(B,j,&e) ) 
+		{
+			ListInsert(C,++min,d);
+			i++;
+			
+		}else{
+			ListInsert(C,++min,e);
+			j++;
+			 }
+	}
+	
+}	
+
+
+
+
+
+
+
+
